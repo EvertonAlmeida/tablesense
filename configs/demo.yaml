@@ -1,0 +1,37 @@
+# Zones and thresholds for one camera view.
+# Pixel coordinates belong to ONE specific video. New camera or new clip = new zones.
+# These match the synthetic scene (640x360). Copy this file for your real clip.
+
+source: data/videos/synthetic.avi
+
+zones:
+  tables:
+    T1: [[65, 35], [235, 35], [235, 165], [65, 165]]
+    T2: [[365, 35], [535, 35], [535, 165], [365, 165]]
+    T3: [[215, 185], [385, 185], [385, 315], [215, 315]]
+  kitchen_door: [[600, 150], [640, 150], [640, 250], [600, 250]]
+  queue: []   # draw this for your real clip (entrance or counter line)
+
+occupancy:            # motion.DebouncedSwitch
+  on_threshold: 0.05
+  off_threshold: 0.01
+  min_on_seconds: 2.0
+  min_off_seconds: 5.0
+
+table_states:         # scene.TableStateMachine
+  seated_after_s: 20
+  staff_visit_min_s: 5
+  guest_grace_period_s: 60
+  alerts:
+    waiting_to_order_s: 300
+    waiting_for_check_s: 240
+    needs_bussing_s: 180
+
+# Drive-thru / traffic view (lanes.py). Fill in for a drive-thru clip.
+lanes:
+  lines: {}              # name: [[x1, y1], [x2, y2]]  e.g. enter_lane, order_point, pickup_window
+  homography:            # 4 image points and the same 4 points on the ground, in meters
+    image_points: []     # [[x, y], ...]
+    ground_points_m: []  # [[X, Y], ...]
+  stopped_speed_mps: 0.5
+  stopped_min_s: 3

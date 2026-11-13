@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Data and models (large, often licensed; never commit)
+data/videos/*
+!data/videos/SOURCES.md
+data/crops/
+data/datasets/
+runs/
+*.pt
+*.onnx
+*.mlpackage/
+*.engine
+
+# Outputs
+outputs/
+*.avi
+*.mp4
+*.gif
+!docs/media/*.gif
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+playground/out/
